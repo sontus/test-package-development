@@ -4,7 +4,9 @@ namespace Sontus\Contractform\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Mail;
 use Sontus\Contractform\Models\ContractForm;
+use Sontus\Contractform\Mail\ContactFormMail;
 
 class ContractFormController extends Controller
 {
@@ -48,6 +50,13 @@ class ContractFormController extends Controller
         $contractform->message = $request->message;
         $contractform->save();
 
+        $admin_email = config('contractform.admin_email');
+        if($admin_email === null || $admin_email === '') {
+            echo "Please set admin email in config/contractform.php";
+        }
+        else{
+            Mail::to($admin_email)->send(new ContactFormMail($contractform));
+        }
         return redirect()->back()->with('success', 'Message sent successfully');
 
     }
