@@ -1,0 +1,26 @@
+{
+    "name": "sontus/contractform",
+    "description": "contract form package for any laravel website",
+    "type": "package",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Sontus\\Contractform\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Sontus\\Contractform\\ContractFormServiceProvider"
+            ]
+        }
+    },
+    "authors": [
+        {
+            "name": "Sontus Chandra Anik",
+            "email": "info.sontus@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {}
+}
